@@ -2,7 +2,7 @@
   "name": "react-wisdom-pet-medicine",
   "version": "1.0.0",
   "description": "Making notes. Written with React",
-  "repository": "ibqn/react-notes",
+  "repository": "ibqn/react-wisdom-pet-medicine",
   "main": "index.js",
   "scripts": {
     "start": "concurrently --names \"WATCH,SERVE\" --prefix-colors \"bgYellow.bold,bgGreen.bold\" \"npm run watch\" \"npm run serve\"",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
