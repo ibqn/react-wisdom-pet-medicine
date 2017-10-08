@@ -1,4 +1,6 @@
 import React from "react"
+import _ from "lodash"
+
 import { AptListItem } from "./AptListItem"
 
 
@@ -17,7 +19,11 @@ export class MainInterface extends React.Component {
     }
 
     onDelete = item => {
-        console.log(`delete ${item}`)
+        this.setState((prevState, props) => {
+            return {
+                appointments: _.without(prevState.appointments, item)
+            }
+        })
     }
 
     render() {

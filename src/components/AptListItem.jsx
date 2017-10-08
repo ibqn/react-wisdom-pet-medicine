@@ -6,10 +6,7 @@ export class AptListItem extends React.Component {
         super(props)
     }
 
-    onDelete = () => {
-        this.props.onDelete(this.props.item)
-        console.log('test')
-    };
+    onDelete = () => this.props.onDelete(this.props.item)
 
     render() {
         const item = this.props.item;
