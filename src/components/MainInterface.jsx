@@ -2,12 +2,16 @@ import React from "react"
 import _ from "lodash"
 
 import { AptListItem } from "./AptListItem"
+import { AddAppointment } from "./AddAppointment"
 
 
 export class MainInterface extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { appointments : [] }
+        this.state = {
+            displayBody : false,
+            appointments : []
+        }
     }
 
     componentDidMount() {
@@ -21,7 +25,17 @@ export class MainInterface extends React.Component {
     onDelete = item => {
         this.setState((prevState, props) => {
             return {
+                ...prevState,
                 appointments: _.without(prevState.appointments, item)
+            }
+        })
+    }
+
+    onDisplayToggle = () => {
+        this.setState((prevState, props) => {
+            return {
+                ...prevState,
+                displayBody: !prevState.displayBody
             }
         })
     }
@@ -32,10 +46,13 @@ export class MainInterface extends React.Component {
                 <AptListItem item={item} key={index} onDelete={this.onDelete} />
             )
         })
+        const displayBody = this.state.displayBody
         return (
-            <div className="interface">
+            <div className="inderface">
+                <AddAppointment displayBody={displayBody} onDisplayToggle={this.onDisplayToggle}/>
                 <ul className="item-list media-list">{filteredApts}</ul>
             </div>
         )
     }
 }
+

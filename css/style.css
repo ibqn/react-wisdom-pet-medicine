@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800|Roboto+Slab:400,100,300,700);
 
 /**  Basic Page CSS **/
-body{
+body {
     font-family: "Roboto Slab", sans-serif;
     font-weight: 300;
     font-size: 2em;
