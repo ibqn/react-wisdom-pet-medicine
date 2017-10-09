@@ -6,7 +6,18 @@ export class SearchAppointment extends React.Component {
         super(props)
     }
 
+    onOrderByChange = event => this.props.onSortChange(event.target.id, this.props.sortDir)
+
+    onSortDirChange = event => this.props.onSortChange(this.props.orderBy, event.target.id)
+
     render() {
+        const ok = <span className="glyphicon glyphicon-ok"></span>
+        const selectOrder = orderBy => {
+            return this.props.orderBy === orderBy ? ok : null
+        }
+        const selectDir = sortDir => {
+            return this.props.sortDir === sortDir ? ok : null
+        }
         return (
             <div className="row search-appointments">
                 <div className="col-sm-offset-3 col-sm-6">
@@ -19,12 +30,32 @@ export class SearchAppointment extends React.Component {
                                 Sort by: <span className="caret"></span>
                             </button>
                             <ul className="dropdown-menu dropdown-menu-right">
-                                <li><a href="#" id="petName">Pet Name</a></li>
-                                <li><a href="#" id="aptDate">Date</a></li>
-                                <li><a href="#" id="ownerName">Owner</a></li>
+                                <li>
+                                    <a href="#" id="petName" onClick={this.onOrderByChange}>
+                                        Pet Name {selectOrder("petName")}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="aptDate" onClick={this.onOrderByChange}>
+                                        Date {selectOrder("aptDate")}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="ownerName" onClick={this.onOrderByChange}>
+                                        Owner {selectOrder("ownerName")}
+                                    </a>
+                                </li>
                                 <li role="separator" className="divider"></li>
-                                <li><a href="#" id="asc">Asc</a></li>
-                                <li><a href="#" id="desc">Desc</a></li>
+                                <li>
+                                    <a href="#" id="asc" onClick={this.onSortDirChange}>
+                                        Asc {selectDir("asc")}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="desc" onClick={this.onSortDirChange}>
+                                        Desc {selectDir("desc")}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

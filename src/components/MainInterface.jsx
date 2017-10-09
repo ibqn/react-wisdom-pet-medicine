@@ -11,7 +11,9 @@ export class MainInterface extends React.Component {
         super(props)
         this.state = {
             displayBody : false,
-            appointments : []
+            appointments : [],
+            orderBy: 'petName',
+            sortDir: 'asc',
         }
     }
 
@@ -38,8 +40,14 @@ export class MainInterface extends React.Component {
         return { ...prevState }
     })
 
+    onSortChange = (orderBy, sortDir) => this.setState({ orderBy, sortDir })
+
     render() {
-        const filteredApts = this.state.appointments.map((item, index) => {
+        let filteredApts = this.state.appointments
+        const orderBy = this.state.orderBy
+        const sortDir = this.state.sortDir
+        filteredApts = _.orderBy(filteredApts, item => item[orderBy].toLowerCase(), sortDir)
+        filteredApts = filteredApts.map((item, index) => {
             return (
                 <AptListItem item={item} key={index} onDelete={this.onDelete} />
             )
@@ -50,7 +58,10 @@ export class MainInterface extends React.Component {
                 <AddAppointment displayBody={displayBody}
                     onNewAppointment={this.onNewAppointment}
                     onDisplayToggle={this.onDisplayToggle} />
-                <SearchAppointment />
+                <SearchAppointment
+                    orderBy={orderBy}
+                    sortDir={sortDir}
+                    onSortChange={this.onSortChange}/>
                 <ul className="item-list media-list">{filteredApts}</ul>
             </div>
         )
