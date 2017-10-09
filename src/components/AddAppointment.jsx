@@ -6,26 +6,20 @@ export class AddAppointment extends React.Component {
         super(props)
 
         this.state = {
-            inputPetName: '',
-            inputOwnerName: '',
-            inputAptDate: '',
-            inputAptTime: '',
+            petName: '',
+            ownerName: '',
+            aptDate: '',
+            aptTime: '',
+            aptNotes: '',
         }
     }
 
-    onDataChange = (input) => this.setState({ [input.target.name]: input.target.value })
+    onDataChange = input => this.setState({ [input.target.name]: input.target.value })
 
     onDisplayToggle = () => this.props.onDisplayToggle()
 
-    onSubmit = (event) => {
-        const item = {
-            petName: this.state.inputPetName,
-            ownerName: this.state.inputOwnerName,
-            aptDate: this.state.inputAptDate,
-            aptNotes: this.state.inputAptTime,
-        }
-        console.log(this.state)
-        this.props.onNewAppointment(item)
+    onSubmit = event => {
+        this.props.onNewAppointment(this.state)
         event.preventDefault()
     }
 
@@ -46,8 +40,8 @@ export class AddAppointment extends React.Component {
                             <label className="col-sm-2 control-label" htmlFor="petName">Pet Name</label>
                             <div className="col-sm-10">
                                 <input type="text" className="form-control"
-                                    name="inputPetName"
-                                    value={this.state.inputPetName} onChange={this.onDataChange}
+                                    name="petName"
+                                    value={this.state.petName} onChange={this.onDataChange}
                                     id="petName" placeholder="Pet's Name" />
                             </div>
                         </div>
@@ -55,8 +49,8 @@ export class AddAppointment extends React.Component {
                             <label className="col-sm-2 control-label" htmlFor="petOwner">Pet Owner</label>
                             <div className="col-sm-10">
                                 <input type="text" className="form-control"
-                                    name="inputOwnerName"
-                                    value={this.state.inputOwnerName} onChange={this.onDataChange}
+                                    name="ownerName"
+                                    value={this.state.ownerName} onChange={this.onDataChange}
                                     id="petOwner" placeholder="Owner's Name" />
                             </div>
                         </div>
@@ -64,15 +58,15 @@ export class AddAppointment extends React.Component {
                             <label className="col-sm-2 control-label" htmlFor="aptDate">Date</label>
                             <div className="col-sm-4">
                                 <input type="date" className="form-control"
-                                    name="inputAptDate"
-                                    value={this.state.inputAptDate} onChange={this.onDataChange}
+                                    name="aptDate"
+                                    value={this.state.aptDate} onChange={this.onDataChange}
                                     id="aptDate" />
                             </div>
                             <label className="col-sm-2 control-label" htmlFor="aptTime">Time</label>
                             <div className="col-sm-4">
                                 <input type="time" className="form-control"
-                                    name="inputAptTime"
-                                    value={this.state.inputAptTime} onChange={this.onDataChange}
+                                    name="aptTime"
+                                    value={this.state.aptTime} onChange={this.onDataChange}
                                     id="aptTime" />
                             </div>
 
@@ -81,8 +75,8 @@ export class AddAppointment extends React.Component {
                             <label className="col-sm-2 control-label" htmlFor="aptNotes">Apt. Notes</label>
                             <div className="col-sm-10">
                                 <textarea className="form-control" rows="4" cols="50"
-                                    id="aptNotes" name="inputAptNotes"
-                                    value={this.state.inputAptNotes} onChange={this.onDataChange}
+                                    id="aptNotes" name="aptNotes"
+                                    value={this.state.aptNotes} onChange={this.onDataChange}
                                     placeholder="Appointment Notes"></textarea>
                             </div>
                         </div>

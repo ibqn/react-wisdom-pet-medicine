@@ -38,7 +38,6 @@ export class MainInterface extends React.Component {
         return { ...prevState }
     })
 
-
     render() {
         const filteredApts = this.state.appointments.map((item, index) => {
             return (
@@ -57,4 +56,3 @@ export class MainInterface extends React.Component {
         )
     }
 }
-
