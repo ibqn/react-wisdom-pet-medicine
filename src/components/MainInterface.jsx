@@ -23,32 +23,21 @@ export class MainInterface extends React.Component {
             })
     }
 
-    onDelete = item => {
-        this.setState((prevState, props) => {
-            return {
-                ...prevState,
-                appointments: _.without(prevState.appointments, item)
-            }
-        })
-    }
+    onDelete = item => this.setState(prevState => {
+        return {
+            appointments: _.without(prevState.appointments, item)
+        }
+    })
 
-    onDisplayToggle = () => {
-        this.setState((prevState, props) => {
-            return {
-                ...prevState,
-                displayBody: !prevState.displayBody
-            }
-        })
-    }
+    onDisplayToggle = () => this.setState(prevState => {
+        return { displayBody: !prevState.displayBody }
+    })
 
-    onNewAppointment = item => {
-        this.setState((prevState, props) => {
-            prevState.appointments.push(item)
-            return {
-                ...prevState,
-            }
-        })
-    }
+    onNewAppointment = item => this.setState(prevState => {
+        prevState.appointments.push(item)
+        return { ...prevState }
+    })
+
 
     render() {
         const filteredApts = this.state.appointments.map((item, index) => {
