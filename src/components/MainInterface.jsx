@@ -3,6 +3,7 @@ import _ from "lodash"
 
 import { AptListItem } from "./AptListItem"
 import { AddAppointment } from "./AddAppointment"
+import { SearchAppointment } from "./SearchAppointment"
 
 
 export class MainInterface extends React.Component {
@@ -40,6 +41,15 @@ export class MainInterface extends React.Component {
         })
     }
 
+    onNewAppointment = item => {
+        this.setState((prevState, props) => {
+            prevState.appointments.push(item)
+            return {
+                ...prevState,
+            }
+        })
+    }
+
     render() {
         const filteredApts = this.state.appointments.map((item, index) => {
             return (
@@ -49,7 +59,10 @@ export class MainInterface extends React.Component {
         const displayBody = this.state.displayBody
         return (
             <div className="inderface">
-                <AddAppointment displayBody={displayBody} onDisplayToggle={this.onDisplayToggle}/>
+                <AddAppointment displayBody={displayBody}
+                    onNewAppointment={this.onNewAppointment}
+                    onDisplayToggle={this.onDisplayToggle} />
+                <SearchAppointment />
                 <ul className="item-list media-list">{filteredApts}</ul>
             </div>
         )

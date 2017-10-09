@@ -9,6 +9,7 @@ export class AddAppointment extends React.Component {
             inputPetName: '',
             inputOwnerName: '',
             inputAptDate: '',
+            inputAptTime: '',
         }
     }
 
@@ -17,17 +18,21 @@ export class AddAppointment extends React.Component {
     onDisplayToggle = () => this.props.onDisplayToggle()
 
     onSubmit = (event) => {
+        const item = {
+            petName: this.state.inputPetName,
+            ownerName: this.state.inputOwnerName,
+            aptDate: this.state.inputAptDate,
+            aptNotes: this.state.inputAptTime,
+        }
+        console.log(this.state)
+        this.props.onNewAppointment(item)
         event.preventDefault()
     }
 
     render() {
         const displayBody = {
-            display: this.props.displayBody? 'block' : 'none'
+            display: this.props.displayBody ? 'block' : 'none'
         }
-        const inputPetName = this.state.inputPetName
-        const inputOwnerName = this.state.inputOwnerName
-        const inputAptDate = this.state.inputAptDate
-        const inputAptTime = this.state.inputAptTime
         return (
             <div className="panel panel-primary">
                 <div className="panel-heading apt-addheading" onClick={this.onDisplayToggle}>
@@ -42,7 +47,7 @@ export class AddAppointment extends React.Component {
                             <div className="col-sm-10">
                                 <input type="text" className="form-control"
                                     name="inputPetName"
-                                    value={inputPetName} onChange={this.onDataChange}
+                                    value={this.state.inputPetName} onChange={this.onDataChange}
                                     id="petName" placeholder="Pet's Name" />
                             </div>
                         </div>
@@ -51,7 +56,7 @@ export class AddAppointment extends React.Component {
                             <div className="col-sm-10">
                                 <input type="text" className="form-control"
                                     name="inputOwnerName"
-                                    value={inputOwnerName} onChange={this.onDataChange}
+                                    value={this.state.inputOwnerName} onChange={this.onDataChange}
                                     id="petOwner" placeholder="Owner's Name" />
                             </div>
                         </div>
@@ -60,14 +65,14 @@ export class AddAppointment extends React.Component {
                             <div className="col-sm-4">
                                 <input type="date" className="form-control"
                                     name="inputAptDate"
-                                    value={inputAptDate} onChange={this.onDataChange}
+                                    value={this.state.inputAptDate} onChange={this.onDataChange}
                                     id="aptDate" />
                             </div>
                             <label className="col-sm-2 control-label" htmlFor="aptTime">Time</label>
                             <div className="col-sm-4">
                                 <input type="time" className="form-control"
                                     name="inputAptTime"
-                                    value={inputAptTime} onChange={this.onDataChange}
+                                    value={this.state.inputAptTime} onChange={this.onDataChange}
                                     id="aptTime" />
                             </div>
 
@@ -76,7 +81,9 @@ export class AddAppointment extends React.Component {
                             <label className="col-sm-2 control-label" htmlFor="aptNotes">Apt. Notes</label>
                             <div className="col-sm-10">
                                 <textarea className="form-control" rows="4" cols="50"
-                                    id="aptNotes" ref="inputAptNotes" placeholder="Appointment Notes"></textarea>
+                                    id="aptNotes" name="inputAptNotes"
+                                    value={this.state.inputAptNotes} onChange={this.onDataChange}
+                                    placeholder="Appointment Notes"></textarea>
                             </div>
                         </div>
                         <div className="form-group">
