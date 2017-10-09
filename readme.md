@@ -2,6 +2,7 @@
 
 The [public class fields](https://babeljs.io/docs/plugins/transform-class-properties/) syntax is used here
 
+```javascript
     class LoggingButton extends React.Component {
         // This syntax ensures `this` is bound within handleClick.
         handleClick = () => {
@@ -16,9 +17,13 @@ The [public class fields](https://babeljs.io/docs/plugins/transform-class-proper
             )
         }
     }
+ ```
 
 
 ## Obtain dependencies and lauch the project ##
 
+```sh
+    # npm
     npm install
     npm start
+```
