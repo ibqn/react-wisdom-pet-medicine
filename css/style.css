@@ -49,6 +49,7 @@ header .navbar-brand h1 {
     background: white;
     padding: 30px 0;
 }
+
 /**  Footer **/
 
 footer {
@@ -129,6 +130,10 @@ footer .navbar-nav>li a {
     font-size: 1.7em;
 }
 
+.item-list .pet-info .pet-head {
+    padding-right: 2px;
+}
+
 .item-list .label-item {
     font-weight: 600;
     color: #667B82;
@@ -140,8 +145,4 @@ footer .navbar-nav>li a {
 
 .item-list .apt-date {
     font-style: italic;
-}
-
-.item-list .apt-notes {
-
 }
