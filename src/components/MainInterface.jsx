@@ -14,6 +14,7 @@ export class MainInterface extends React.Component {
             appointments : [],
             orderBy: 'petName',
             sortDir: 'asc',
+            searchText: '',
         }
     }
 
@@ -42,10 +43,22 @@ export class MainInterface extends React.Component {
 
     onSortChange = (orderBy, sortDir) => this.setState({ orderBy, sortDir })
 
+    onSearch = searchText => this.setState({ searchText })
+
     render() {
         let filteredApts = this.state.appointments
         const orderBy = this.state.orderBy
         const sortDir = this.state.sortDir
+        const searchText = this.state.searchText
+        filteredApts = searchText ? filteredApts.filter(item => {
+            return (
+                _.includes(item.petName.toLowerCase(), searchText) ||
+                _.includes(item.ownerName.toLowerCase(), searchText) ||
+                _.includes(item.aptNotes.toLowerCase(), searchText) ||
+                _.includes(item.aptDate, searchText) ||
+                _.includes(item.aptTime, searchText)
+            )
+        }) : filteredApts
         filteredApts = _.orderBy(filteredApts, item => item[orderBy].toLowerCase(), sortDir)
         filteredApts = filteredApts.map((item, index) => {
             return (
@@ -61,6 +74,8 @@ export class MainInterface extends React.Component {
                 <SearchAppointment
                     orderBy={orderBy}
                     sortDir={sortDir}
+                    searchText={searchText}
+                    onSearch={this.onSearch}
                     onSortChange={this.onSortChange}/>
                 <ul className="item-list media-list">{filteredApts}</ul>
             </div>

@@ -10,6 +10,8 @@ export class SearchAppointment extends React.Component {
 
     onSortDirChange = event => this.props.onSortChange(this.props.orderBy, event.target.id)
 
+    onSearch = event => this.props.onSearch(event.target.value)
+
     render() {
         const ok = <span className="glyphicon glyphicon-ok"></span>
         const selectOrder = orderBy => {
@@ -23,6 +25,8 @@ export class SearchAppointment extends React.Component {
                 <div className="col-sm-offset-3 col-sm-6">
                     <div className="input-group">
                         <input id="SearchApts" placeholder="Search" type="text"
+                            value={this.props.searchText}
+                            onChange={this.onSearch}
                             className="form-control" aria-label="Search Appointments" />
                         <div className="input-group-btn">
                             <button type="button" className="btn btn-primary dropdown-toggle"
