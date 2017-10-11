@@ -20,7 +20,7 @@ export class AptListItem extends React.Component {
                 <div className="pet-info media-body">
                     <div className="pet-head">
                         <span className="pet-name">{item.petName}</span>
-                        <span className="apt-date pull-right">{item.aptDate}</span>
+                        <span className="apt-date pull-right">{item.aptDate} {item.aptTime}</span>
                     </div>
                     <div className="owner-name"><span className="label-item">Owner: </span>
                     {item.ownerName}</div>
